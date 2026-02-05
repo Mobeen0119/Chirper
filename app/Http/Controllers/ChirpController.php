@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 use App\Models\Chirp;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ChirpController extends Controller
 {
  public function index(){
+
    return \view('dashboard',[
-    'chirps'=>Chirp::with('user')->get()
+    'chirps'=>Chirp::with('user')->latest()->get()
    ]);
    
  }
@@ -27,5 +29,19 @@ $request->user()->chirps()->create($validated);
   }
    $chirp->delete();
    return redirect()->back();
+ }
+ public function edit(Chirp $chirp){
+  Gate::authorize('update', $chirp);
+  return view('chirps.edit',[
+    'chirp'=>$chirp
+  ]);
+ }
+ public function update(Request $request, Chirp $chirp){
+  Gate::authorize('update', $chirp);
+  $validated=$request ->validate([
+    'message'=>'required|string|max:300'
+  ]);
+  $chirp->update($validated);
+  return redirect(route('dashboard'));
  }
 }
