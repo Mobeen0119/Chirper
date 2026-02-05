@@ -7,19 +7,24 @@ use Illuminate\Http\Request;
 class ChirpController extends Controller
 {
  public function index(){
-   $chirps=Chirp::all();
-   return view('home',['chirps'=>$chirps]);
+   return \view('dashboard',[
+    'chirps'=>Chirp::with('user')->get()
+   ]);
+   
  }
  
  public function store(Request $request){
-   $request ->validate([
+   $validated=$request ->validate([
       'message'=>'required|string|max:300'
    ]);
-   Chirp::create(['message'=>$request->message]);
-   return redirect()->back();
+$request->user()->chirps()->create($validated);
+   return redirect(route('dashboard'));
  }
 
  public function destroy(Chirp $chirp){
+  if($chirp->user_id!==auth()->id()){
+    abort(403, 'This is not your chirp to delete!');
+  }
    $chirp->delete();
    return redirect()->back();
  }

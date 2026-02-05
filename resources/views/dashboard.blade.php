@@ -1,6 +1,6 @@
-<x-layout>
+<x-layouts.app>
     <x-slot:title>Chirper | Dashboard</x-slot:title>
-
+<div class="bg-slate-950"> </div>
     <div class="w-full min-h-screen bg-slate-950 py-12 px-4 sm:px-6 lg:px-8">
         
         <header class="max-w-4xl mx-auto text-center mb-12">
@@ -23,7 +23,7 @@
                     <div class="flex justify-between items-center mt-6">
                         <span class="text-xs text-slate-500 font-mono">Max 255 chars</span>
                         <button class="btn btn-primary px-10 rounded-full shadow-lg shadow-primary/30 hover:scale-105 active:scale-95 transition-all">
-                            Post Chirp 🚀
+                             Chirp 🚀
                         </button>
                     </div>
                 </form>
@@ -77,4 +77,4 @@
             animation: enter 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
     </style>
-</x-layout>
+</x-layouts.app>
