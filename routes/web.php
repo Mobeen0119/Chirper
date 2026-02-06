@@ -3,10 +3,10 @@ use App\Http\Controllers\ChirpController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
+Route::get('/', function () {
+    return redirect()->route('register');
+});
 
 Route::middleware(['auth', 'verified'])->group(function () {
     // The Dashboard (Index)

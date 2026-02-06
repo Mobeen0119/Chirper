@@ -7,7 +7,7 @@
             <h1 class="text-4xl font-extrabold text-white tracking-tight sm:text-5xl">
                 Chirp <span class="text-indigo-500">Away</span>
             </h1>
-            <p class="mt-3 text-xl text-slate-400 font-light italic">"Speak your mind, change the world."</p>
+            <p class="mt-3 text-2xl text-slate-400 font-light italic">Speak from Mind</p>
         </header>
 
         <div x-data="{ message: '' }" class="max-w-2xl mx-auto mb-16 animate-in">
